@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../constrants.dart';
+import '../../../responsive.dart';
 import 'chart.dart';
 import 'storage_info_card.dart';
 
@@ -11,19 +12,23 @@ class StarageDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(defaultPadding),
+      padding: Responsive.isDesktop(context)
+          ? const EdgeInsets.only(right: defaultPadding, top: 15.0)
+          : const EdgeInsets.all(defaultPadding),
       decoration: const BoxDecoration(
-        color: ColorApp.secondaryColor,
+        color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
-          Text(
-            "Storage Details",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
+          Center(
+            child: Text(
+              "Storage Details",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
           SizedBox(height: defaultPadding),

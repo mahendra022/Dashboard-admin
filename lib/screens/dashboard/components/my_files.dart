@@ -14,36 +14,46 @@ class MyFiles extends StatelessWidget {
     final Size _size = MediaQuery.of(context).size;
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "My Files",
-              style: Theme.of(context).textTheme.subtitle1,
-            ),
-            ElevatedButton.icon(
-              style: TextButton.styleFrom(
-                padding: EdgeInsets.symmetric(
-                  horizontal: defaultPadding * 1.5,
-                  vertical:
-                      defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
-                ),
+        Container(
+          padding: Responsive.isMobile(context) || Responsive.isTablet(context)
+              ? const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0)
+              : const EdgeInsets.symmetric(vertical: 12.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "My Files",
+                style: Theme.of(context).textTheme.subtitle1,
               ),
-              onPressed: () {},
-              icon: const Icon(Icons.add),
-              label: const Text("Add New"),
-            ),
-          ],
+              ElevatedButton.icon(
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: defaultPadding * 1.5,
+                    vertical:
+                        defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
+                  ),
+                ),
+                onPressed: () {},
+                icon: const Icon(Icons.add),
+                label: const Text("Add New"),
+              ),
+            ],
+          ),
         ),
         const SizedBox(height: defaultPadding),
-        Responsive(
-          mobile: FileInfoCardGridView(
-            crossAxisCount: _size.width < 650 ? 2 : 4,
-            childAspectRatio: _size.width < 650 ? 1.3 : 1,
-          ),
-          tablet: const FileInfoCardGridView(),
-          desktop: FileInfoCardGridView(
-            childAspectRatio: _size.width < 1400 ? 1.1 : 1.4,
+        Container(
+          padding: Responsive.isMobile(context)
+              ? const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0)
+              : const EdgeInsets.symmetric(vertical: 12.0),
+          child: Responsive(
+            mobile: FileInfoCardGridView(
+              crossAxisCount: _size.width < 650 ? 2 : 4,
+              childAspectRatio: _size.width < 650 ? 1.3 : 1,
+            ),
+            tablet: const FileInfoCardGridView(),
+            desktop: FileInfoCardGridView(
+              childAspectRatio: _size.width < 1400 ? 1.1 : 1.4,
+            ),
           ),
         ),
       ],

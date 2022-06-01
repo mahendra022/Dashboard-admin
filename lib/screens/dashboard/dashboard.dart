@@ -26,10 +26,10 @@ class DashboardScreen extends StatelessWidget {
                     children: [
                       Header(),
                       const MyFiles(),
-                      SizedBox(height: defaultPadding),
+                      const SizedBox(height: defaultPadding),
                       const RecentFiles(),
                       if (Responsive.isMobile(context))
-                        SizedBox(height: defaultPadding),
+                        const SizedBox(height: defaultPadding),
                       if (Responsive.isMobile(context)) const StarageDetails(),
                     ],
                   ),

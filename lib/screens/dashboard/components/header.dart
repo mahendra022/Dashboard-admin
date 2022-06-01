@@ -14,8 +14,11 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
+      padding: Responsive.isMobile(context)
+          ? const EdgeInsets.only(top: 12.0, bottom: 12.0, right: 12.0)
+          : const EdgeInsets.symmetric(vertical: 12.0),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           if (!Responsive.isDesktop(context))
             IconButton(
