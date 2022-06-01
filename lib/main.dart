@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:dashboard_admin/app/bindings.dart';
 import 'package:dashboard_admin/screens/main/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -9,6 +10,7 @@ import 'app/http_overrides.dart';
 void main() async {
   await dotenv.load();
   HttpOverrides.global = MyHttpOverrides();
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -20,10 +22,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
+        initialBinding: AppBinding(),
         title: 'Dashboard Admin Panel',
         theme: ThemeData(
+          fontFamily: 'Titi',
           primarySwatch: Colors.pink,
         ),
-        home: const MainScreen());
+        home: MainScreen());
   }
 }

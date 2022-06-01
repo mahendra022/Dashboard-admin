@@ -1,25 +1,24 @@
+import 'package:dashboard_admin/app/controllers/routes_controller.dart';
+import 'package:dashboard_admin/constrants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
-int _selectedIndex = 0;
-
-class SideMenu extends StatefulWidget {
-  const SideMenu({
+class SideMenu extends StatelessWidget {
+  SideMenu({
     Key? key,
-  }) : super(key: key);
+    required RoutesController controller,
+  })  : _controller = controller,
+        super(key: key);
 
-  @override
-  State<SideMenu> createState() => _SideMenuState();
-}
-
-class _SideMenuState extends State<SideMenu> {
+  final RoutesController _controller;
   final profile = dotenv.get('PHOTO_PROFILE');
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.green.withOpacity(0.1),
+      backgroundColor: Colors.white,
       elevation: 0.0,
       child: ListView(
         children: [
@@ -28,8 +27,8 @@ class _SideMenuState extends State<SideMenu> {
               Container(
                 width: 50.0,
                 height: 50.0,
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 30.0, vertical: 30.0),
+                margin: const EdgeInsets.only(
+                    left: 30.0, top: 30.0, bottom: 30.0, right: 10.0),
                 child: ClipRRect(
                     borderRadius:
                         const BorderRadius.all(Radius.circular(100.0)),
@@ -42,20 +41,17 @@ class _SideMenuState extends State<SideMenu> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Mahendra',
                         style: TextStyle(
-                          fontSize: 20.0,
+                          fontSize: 17.0,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black.withOpacity(0.7),
+                          color: Colors.black,
                         ),
-                      ),
-                      const SizedBox(
-                        height: 5.0,
                       ),
                       Text('Senior Frontend Developer',
                           style: TextStyle(
-                            fontSize: 12.0,
+                            fontSize: 10.0,
                             fontWeight: FontWeight.bold,
                             color: Colors.black.withOpacity(0.7),
                           ))
@@ -73,36 +69,34 @@ class _SideMenuState extends State<SideMenu> {
           DrawerListTile(
             title: "Dashboard",
             selected: 0,
+            controller: _controller,
             svgSrc: "assets/icons/menu_dashbord.svg",
             press: () {
-              setState(() {
-                _selectedIndex = 0;
-              });
+              _controller.setDrawerSelected = 0;
             },
           ),
           DrawerListTile(
             title: "My Task",
             selected: 1,
+            controller: _controller,
             svgSrc: "assets/icons/menu_task.svg",
             press: () {
-              setState(() {
-                _selectedIndex = 1;
-              });
+              _controller.setDrawerSelected = 1;
             },
           ),
           DrawerListTile(
             title: "Project",
             selected: 2,
+            controller: _controller,
             svgSrc: "assets/icons/menu_doc.svg",
             press: () {
-              setState(() {
-                _selectedIndex = 2;
-              });
+              _controller.setDrawerSelected = 2;
             },
           ),
           DrawerListTile(
             title: "Transaction",
             selected: 3,
+            controller: _controller,
             svgSrc: "assets/icons/menu_tran.svg",
             trailing: Container(
               decoration: const BoxDecoration(
@@ -118,19 +112,16 @@ class _SideMenuState extends State<SideMenu> {
                       fontWeight: FontWeight.w500)),
             ),
             press: () {
-              setState(() {
-                _selectedIndex = 3;
-              });
+              _controller.setDrawerSelected = 3;
             },
           ),
           DrawerListTile(
             selected: 4,
             title: "Settings",
+            controller: _controller,
             svgSrc: "assets/icons/menu_setting.svg",
             press: () {
-              setState(() {
-                _selectedIndex = 4;
-              });
+              _controller.setDrawerSelected = 4;
             },
           ),
         ],
@@ -140,73 +131,77 @@ class _SideMenuState extends State<SideMenu> {
 }
 
 class DrawerListTile extends StatelessWidget {
-  const DrawerListTile(
-      {Key? key,
-      // For selecting those three line once press "Command+D"
-      required this.title,
-      required this.svgSrc,
-      required this.press,
-      required this.selected,
-      this.trailing})
-      : super(key: key);
+  const DrawerListTile({
+    Key? key,
+    // For selecting those three line once press "Command+D"
+    required this.title,
+    required this.svgSrc,
+    required this.press,
+    required this.selected,
+    this.trailing,
+    required RoutesController controller,
+  })  : _controller = controller,
+        super(key: key);
 
   final String title, svgSrc;
   final Widget? trailing;
   final int selected;
   final VoidCallback press;
+  final RoutesController _controller;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: press,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          _selectedIndex == selected
-              ? Container(
-                  height: 40.0,
-                  width: 4.0,
-                  decoration: const BoxDecoration(
-                    color: Colors.pink,
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(15.0),
-                        bottomRight: Radius.circular(15.0)),
-                  ),
-                )
-              : const SizedBox(
-                  width: 4.0,
+    return Obx(() => GestureDetector(
+          onTap: press,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              _controller.drawerSelected.value == selected
+                  ? Container(
+                      height: 40.0,
+                      width: 4.0,
+                      decoration: BoxDecoration(
+                        color: ColorApp.primaryColor,
+                        borderRadius: const BorderRadius.only(
+                            topRight: Radius.circular(15.0),
+                            bottomRight: Radius.circular(15.0)),
+                      ),
+                    )
+                  : const SizedBox(
+                      width: 4.0,
+                    ),
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 15.0),
+                child: Row(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(left: 25.0),
+                      child: SvgPicture.asset(
+                        svgSrc,
+                        color: _controller.drawerSelected.value != selected
+                            ? Colors.black38
+                            : Colors.pink,
+                        height: 16,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 15.0,
+                    ),
+                    Text(
+                      title,
+                      style: _controller.drawerSelected.value != selected
+                          ? const TextStyle(
+                              color: Colors.black38, fontSize: 13.0)
+                          : const TextStyle(
+                              color: Colors.pink,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13.0),
+                    ),
+                  ],
                 ),
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 15.0),
-            child: Row(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(left: 25.0),
-                  child: SvgPicture.asset(
-                    svgSrc,
-                    color: _selectedIndex != selected
-                        ? Colors.black38
-                        : Colors.pink,
-                    height: 16,
-                  ),
-                ),
-                const SizedBox(
-                  width: 15.0,
-                ),
-                Text(
-                  title,
-                  style: _selectedIndex != selected
-                      ? const TextStyle(color: Colors.black38, fontSize: 13.0)
-                      : const TextStyle(
-                          color: Colors.pink,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13.0),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
+              )
+            ],
+          ),
+        ));
   }
 }
