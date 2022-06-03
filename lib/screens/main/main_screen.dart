@@ -1,4 +1,3 @@
-import 'package:dashboard_admin/screens/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,7 +32,7 @@ class MainScreen extends StatelessWidget {
               ),
             Obx(() => Expanded(
                   // It takes 5/6 part of the screen
-                  flex: 4,
+                  flex: 5,
                   child: _controller.drawerMenu
                       .elementAt(_controller.drawerSelected.value),
                 )),

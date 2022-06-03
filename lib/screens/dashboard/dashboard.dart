@@ -20,13 +20,14 @@ class DashboardScreen extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                if (!Responsive.isMobile(context))
+                  const SizedBox(width: defaultPadding),
                 Expanded(
                   flex: 5,
                   child: Column(
                     children: [
                       Header(),
                       const MyFiles(),
-                      const SizedBox(height: defaultPadding),
                       const RecentFiles(),
                       if (Responsive.isMobile(context))
                         const SizedBox(height: defaultPadding),
@@ -35,8 +36,16 @@ class DashboardScreen extends StatelessWidget {
                   ),
                 ),
                 if (!Responsive.isMobile(context))
-                  SizedBox(width: defaultPadding),
+                  const SizedBox(width: defaultPadding),
                 // On Mobile means if the screen is less than 850 we dont want to show it
+                if (!Responsive.isMobile(context))
+                  Container(
+                    color: Colors.black,
+                    height: MediaQuery.of(context).size.height,
+                    width: 0.1,
+                  ),
+                if (Responsive.isDesktop(context))
+                  const SizedBox(width: defaultPadding),
                 if (!Responsive.isMobile(context))
                   const Expanded(
                     flex: 2,

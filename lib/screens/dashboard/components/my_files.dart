@@ -16,7 +16,8 @@ class MyFiles extends StatelessWidget {
       children: [
         Container(
           padding: Responsive.isMobile(context) || Responsive.isTablet(context)
-              ? const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0)
+              ? const EdgeInsets.symmetric(
+                  horizontal: defaultPadding, vertical: 12.0)
               : const EdgeInsets.symmetric(vertical: 12.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

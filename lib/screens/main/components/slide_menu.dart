@@ -98,19 +98,7 @@ class SideMenu extends StatelessWidget {
             selected: 3,
             controller: _controller,
             svgSrc: "assets/icons/menu_tran.svg",
-            trailing: Container(
-              decoration: const BoxDecoration(
-                color: Colors.pink,
-                borderRadius: BorderRadius.all(Radius.circular(4.0)),
-              ),
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 7.0, vertical: 5.0),
-              child: const Text('5',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 7.0,
-                      fontWeight: FontWeight.w500)),
-            ),
+            trailing: 3,
             press: () {
               _controller.setDrawerSelected = 3;
             },
@@ -144,7 +132,7 @@ class DrawerListTile extends StatelessWidget {
         super(key: key);
 
   final String title, svgSrc;
-  final Widget? trailing;
+  final int? trailing;
   final int selected;
   final VoidCallback press;
   final RoutesController _controller;
@@ -199,7 +187,27 @@ class DrawerListTile extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
+              ),
+              const Spacer(),
+              trailing != null && trailing != 0
+                  ? Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.pink,
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(4.0),
+                            bottomRight: Radius.circular(4.0),
+                            bottomLeft: Radius.circular(4.0)),
+                      ),
+                      margin: const EdgeInsets.only(right: 30.0),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 7.0, vertical: 2.0),
+                      child: Text('$trailing',
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 10.0,
+                              fontWeight: FontWeight.w600)),
+                    )
+                  : const SizedBox()
             ],
           ),
         ));
