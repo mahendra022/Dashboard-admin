@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../constrants.dart';
 import '../../../responsive.dart';
+import '../../../utilities/widget/hover.dart';
 import 'file_info_card.dart';
 
 class MyFiles extends StatelessWidget {
@@ -15,7 +16,7 @@ class MyFiles extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: Responsive.isMobile(context) || Responsive.isTablet(context)
+          padding: Responsive.isMobile(context)
               ? const EdgeInsets.symmetric(
                   horizontal: defaultPadding, vertical: 12.0)
               : const EdgeInsets.symmetric(vertical: 12.0),
@@ -43,6 +44,7 @@ class MyFiles extends StatelessWidget {
         ),
         const SizedBox(height: defaultPadding),
         Container(
+          alignment: FractionalOffset.center,
           padding: Responsive.isMobile(context)
               ? const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0)
               : const EdgeInsets.symmetric(vertical: 12.0),
@@ -78,13 +80,16 @@ class FileInfoCardGridView extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: demoMyFiles.length,
+      padding: const EdgeInsets.all(10.0),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
         crossAxisSpacing: defaultPadding,
         mainAxisSpacing: defaultPadding,
         childAspectRatio: childAspectRatio,
       ),
-      itemBuilder: (context, index) => FileInfoCard(info: demoMyFiles[index]),
+      itemBuilder: (context, index) {
+        return HoverApp(child: FileInfoCard(info: demoMyFiles[index]));
+      },
     );
   }
 }

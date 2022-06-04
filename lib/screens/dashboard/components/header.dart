@@ -28,7 +28,7 @@ class Header extends StatelessWidget {
                 IconButton(
                   splashColor: Colors.transparent,
                   hoverColor: Colors.transparent,
-                  padding: _size.width < 845
+                  padding: _size.width < 850
                       ? const EdgeInsets.only(left: defaultPadding)
                       : EdgeInsets.zero,
                   constraints: const BoxConstraints(),
@@ -65,7 +65,7 @@ class Header extends StatelessWidget {
               ),
               if (!Responsive.isMobile(context))
                 const PresentageBarApp(
-                  widthBar: 60.0,
+                  widthBar: 40.0,
                   width: 100.0,
                 ),
               if (Responsive.isMobile(context))

@@ -49,7 +49,7 @@ class SideMenu extends StatelessWidget {
                           color: Colors.black,
                         ),
                       ),
-                      Text('Senior Frontend Developer',
+                      Text('Senior Frontend',
                           style: TextStyle(
                             fontSize: 10.0,
                             fontWeight: FontWeight.bold,
