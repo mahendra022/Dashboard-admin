@@ -80,7 +80,7 @@ class FileInfoCardGridView extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: demoMyFiles.length,
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(8.0),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
         crossAxisSpacing: defaultPadding,

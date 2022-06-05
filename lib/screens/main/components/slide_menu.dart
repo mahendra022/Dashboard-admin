@@ -17,102 +17,106 @@ class SideMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      backgroundColor: Colors.white,
-      elevation: 0.0,
-      child: ListView(
-        children: [
-          Row(
-            children: [
-              Container(
-                width: 50.0,
-                height: 50.0,
-                margin: const EdgeInsets.only(
-                    left: 30.0, top: 30.0, bottom: 30.0, right: 10.0),
-                child: ClipRRect(
-                    borderRadius:
-                        const BorderRadius.all(Radius.circular(100.0)),
-                    child: Image.network(
-                      profile,
-                      fit: BoxFit.cover,
-                    )),
-              ),
-              SizedBox(
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Mahendra',
-                        style: TextStyle(
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                      Text('Senior Frontend',
+    return Container(
+      width: 230.0,
+      color: Colors.white,
+      child: Drawer(
+        backgroundColor: ColorApp.primaryColor!.withOpacity(0.03),
+        elevation: 0.0,
+        child: ListView(
+          children: [
+            Row(
+              children: [
+                Container(
+                  width: 50.0,
+                  height: 50.0,
+                  margin: const EdgeInsets.only(
+                      left: 30.0, top: 30.0, bottom: 30.0, right: 10.0),
+                  child: ClipRRect(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(100.0)),
+                      child: Image.network(
+                        profile,
+                        fit: BoxFit.cover,
+                      )),
+                ),
+                SizedBox(
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Mahendra',
                           style: TextStyle(
-                            fontSize: 10.0,
+                            fontSize: 17.0,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black.withOpacity(0.7),
-                          ))
-                    ]),
-              )
-            ],
-          ),
-          Container(
-              margin: const EdgeInsets.only(left: 30.0),
-              child: const Text('Menu',
-                  style: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.pink))),
-          DrawerListTile(
-            title: "Dashboard",
-            selected: 0,
-            controller: _controller,
-            svgSrc: "assets/icons/menu_dashbord.svg",
-            press: () {
-              _controller.setDrawerSelected = 0;
-            },
-          ),
-          DrawerListTile(
-            title: "My Task",
-            selected: 1,
-            controller: _controller,
-            svgSrc: "assets/icons/menu_task.svg",
-            press: () {
-              _controller.setDrawerSelected = 1;
-            },
-          ),
-          DrawerListTile(
-            title: "Project",
-            selected: 2,
-            controller: _controller,
-            svgSrc: "assets/icons/menu_doc.svg",
-            press: () {
-              _controller.setDrawerSelected = 2;
-            },
-          ),
-          DrawerListTile(
-            title: "Transaction",
-            selected: 3,
-            controller: _controller,
-            svgSrc: "assets/icons/menu_tran.svg",
-            trailing: 3,
-            press: () {
-              _controller.setDrawerSelected = 3;
-            },
-          ),
-          DrawerListTile(
-            selected: 4,
-            title: "Settings",
-            controller: _controller,
-            svgSrc: "assets/icons/menu_setting.svg",
-            press: () {
-              _controller.setDrawerSelected = 4;
-            },
-          ),
-        ],
+                            color: Colors.black,
+                          ),
+                        ),
+                        Text('Senior Frontend',
+                            style: TextStyle(
+                              fontSize: 10.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black.withOpacity(0.7),
+                            ))
+                      ]),
+                )
+              ],
+            ),
+            Container(
+                margin: const EdgeInsets.only(left: 30.0),
+                child: const Text('Menu',
+                    style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.pink))),
+            DrawerListTile(
+              title: "Dashboard",
+              selected: 0,
+              controller: _controller,
+              svgSrc: "assets/icons/menu_dashbord.svg",
+              press: () {
+                _controller.setDrawerSelected = 0;
+              },
+            ),
+            DrawerListTile(
+              title: "My Task",
+              selected: 1,
+              controller: _controller,
+              svgSrc: "assets/icons/menu_task.svg",
+              press: () {
+                _controller.setDrawerSelected = 1;
+              },
+            ),
+            DrawerListTile(
+              title: "Project",
+              selected: 2,
+              controller: _controller,
+              svgSrc: "assets/icons/menu_doc.svg",
+              press: () {
+                _controller.setDrawerSelected = 2;
+              },
+            ),
+            DrawerListTile(
+              title: "Transaction",
+              selected: 3,
+              controller: _controller,
+              svgSrc: "assets/icons/menu_tran.svg",
+              trailing: 3,
+              press: () {
+                _controller.setDrawerSelected = 3;
+              },
+            ),
+            DrawerListTile(
+              selected: 4,
+              title: "Settings",
+              controller: _controller,
+              svgSrc: "assets/icons/menu_setting.svg",
+              press: () {
+                _controller.setDrawerSelected = 4;
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -167,7 +171,7 @@ class DrawerListTile extends StatelessWidget {
                       child: SvgPicture.asset(
                         svgSrc,
                         color: _controller.drawerSelected.value != selected
-                            ? Colors.black38
+                            ? Colors.pink[200]
                             : Colors.pink,
                         height: 16,
                       ),
@@ -178,8 +182,7 @@ class DrawerListTile extends StatelessWidget {
                     Text(
                       title,
                       style: _controller.drawerSelected.value != selected
-                          ? const TextStyle(
-                              color: Colors.black38, fontSize: 13.0)
+                          ? TextStyle(color: Colors.pink[200]!, fontSize: 13.0)
                           : const TextStyle(
                               color: Colors.pink,
                               fontWeight: FontWeight.bold,

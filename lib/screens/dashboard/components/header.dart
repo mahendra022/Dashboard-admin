@@ -18,7 +18,7 @@ class Header extends StatelessWidget {
     return Container(
       padding: Responsive.isMobile(context)
           ? const EdgeInsets.only(top: 12.0, bottom: 12.0, right: 16.0)
-          : const EdgeInsets.symmetric(vertical: 12.0),
+          : const EdgeInsets.only(top: 30.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

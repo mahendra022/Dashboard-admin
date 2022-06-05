@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         initialBinding: AppBinding(),
         title: 'Dashboard Admin Panel',
         theme: ThemeData(
-          fontFamily: 'Titi',
+          fontFamily: 'Mulish',
           primarySwatch: Colors.pink,
         ),
         home: MainScreen());

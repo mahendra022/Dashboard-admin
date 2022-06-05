@@ -13,7 +13,7 @@ class StarageDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: Responsive.isDesktop(context)
-          ? const EdgeInsets.only(right: defaultPadding, top: 15.0)
+          ? const EdgeInsets.only(right: defaultPadding, top: 35.0)
           : const EdgeInsets.all(defaultPadding),
       decoration: const BoxDecoration(
         color: Colors.white,
